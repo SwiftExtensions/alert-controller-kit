@@ -4,10 +4,14 @@
 import UIKit
 
 public extension UIAlertController {
+    @inlinable
+    @inline(__always)
     static func buildAlert(title: String?, message: String?) -> UIAlertController {
         UIAlertController(title: title, message: message, preferredStyle: .alert)
     }
     
+    @inlinable
+    @inline(__always)
     @discardableResult
     func addAction(
         title: String?,
@@ -22,6 +26,19 @@ public extension UIAlertController {
         }
         
         return action
+    }
+    
+    @inlinable
+    @inline(__always)
+    @discardableResult
+    func addTextField(placeholder: String?) -> UITextField {
+        var textField: UITextField!
+        self.addTextField { _textField in
+            textField = _textField
+            textField.placeholder = placeholder
+        }
+        
+        return textField
     }
     
     
