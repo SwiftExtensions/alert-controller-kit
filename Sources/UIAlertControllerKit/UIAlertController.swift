@@ -12,6 +12,24 @@ public extension UIAlertController {
     
     @inlinable
     @inline(__always)
+    convenience init(title: String?, message: String?) {
+        self.init(title: title, message: message, preferredStyle: .alert)
+    }
+    
+    @inlinable
+    @inline(__always)
+    convenience init(
+        title: String?,
+        message: String?,
+        buttonTitle: String?,
+        handler: ((_ action: UIAlertAction) -> Void)? = nil
+    ) {
+        self.init(title: title, message: message)
+        self.addAction(title: buttonTitle, isPreferred: true, handler: handler)
+    }
+    
+    @inlinable
+    @inline(__always)
     @discardableResult
     func addAction(
         title: String?,
